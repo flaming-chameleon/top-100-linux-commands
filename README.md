@@ -3,6 +3,11 @@ Comprehensive list of the top 100 Linux commands with detailed descriptions and 
 
 ### 1. **ssh**
 SSH (Secure Shell) is used to securely connect to a remote machine.
+- is program for logging into a remote machine and for executing
+commands on a remote machine.  It is intended to provide secure encrypted communi‐
+cations between two untrusted hosts over an insecure network.  X11 connections, ar‐
+bitrary TCP ports and UNIX-domain sockets can also be forwarded over the secure
+channel.
 ```bash
 # Connect to a remote server
 ssh username@hostname
@@ -23,6 +28,8 @@ cd ..
 
 ### 3. **ls**
 Lists directory contents.
+- list  information  about  the FILEs (the current directory by default).  Sort en‐
+tries alphabetically if none of -cftuvSUX nor --sort is specified.
 ```bash
 # List files in the current directory
 ls
@@ -33,13 +40,17 @@ ls -l
 ```
 
 ### 4. **pwd**
-Prints the current working directory.
+Print the full filename of the current working directory.
 ```bash
 pwd
 ```
 
 ### 5. **nano**
 Nano is a simple, easy-to-use text editor.
+- is a small and friendly editor.  It copies the look and feel of Pico, but is
+free software, and implements several features that Pico lacks, such as:  opening
+multiple  files,  scrolling per line, undo/redo, syntax coloring, line numbering,
+and soft-wrapping overlong lines.
 ```bash
 # Open a file in nano
 nano filename.txt
@@ -49,6 +60,13 @@ Ctrl + O, Enter, Ctrl + X
 
 ### 6. **vim**
 Vim is a powerful text editor.
+- is  a  text editor that is upwards compatible to Vi.  It can be used to edit
+all kinds of plain text.  It is especially useful for editing programs.
+
+There are a lot of enhancements above Vi: multi level  undo,  multi  windows  and
+buffers,  syntax highlighting, command line editing, filename completion, on-line
+help, visual selection, etc..  See ":help vi_diff.txt" for a summary of the  dif‐
+ferences between Vim and Vi
 ```bash
 # Open a file in vim
 vim filename.txt
@@ -60,6 +78,7 @@ i
 
 ### 7. **cp**
 Copies files and directories.
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
 ```bash
 # Copy a file
 cp source.txt destination.txt
@@ -69,6 +88,7 @@ cp -r source_dir destination_dir
 
 ### 8. **mv**
 Moves or renames files and directories.
+Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.
 ```bash
 # Move a file
 mv source.txt destination.txt
@@ -87,6 +107,8 @@ rm -r directory_name
 
 ### 10. **chmod**
 Changes file permissions.
+Change  the mode of each FILE to MODE.  With --reference, change the mode of each FILE
+to that of RFILE.
 ```bash
 # Make a file executable
 chmod +x script.sh
@@ -96,6 +118,7 @@ chmod 755 filename.txt
 
 ### 11. **chown**
 Changes file owner and group.
+- changes the user and/or group ownership of each given file.  
 ```bash
 # Change the owner of a file
 chown username filename.txt
@@ -105,15 +128,22 @@ chown -R username:group directory_name
 
 ### 12. **ps**
 Displays information about running processes.
+- displays information about a selection of the active processes.  If you want a
+repetitive update of the selection and the displayed information, use top instead
 ```bash
 # Display all running processes
 ps aux
 # Display processes for a specific user
 ps -u username
+# To see every process running as root
+ps -U root -u root u
 ```
 
 ### 13. **kill**
 Sends a signal to terminate a process.
+- The default signal for kill is TERM.  Use -l or -L to list available signals. 
+Particularly useful signals include HUP, INT, KILL, STOP, CONT, and  0.  Alternate  signals
+may  be  specified  in  three ways: -9, -SIGKILL or -KILL. 
 ```bash
 # Kill a process by PID
 kill 1234
@@ -123,18 +153,33 @@ kill -9 1234
 
 ### 14. **top**
 Displays real-time system information including processes.
+- program provides a dynamic real-time view of a running system.  It can display
+system summary information as well as a list of processes or threads  currently  being
+managed  by  the  Linux kernel.  The types of system summary information shown and the
+types, order and size of information displayed for processes are all user configurable
+and that configuration can be made persistent across restarts
 ```bash
 top
 ```
 
 ### 15. **htop**
 An interactive process viewer.
+- is a cross-platform ncurses-based process viewer.
+It is similar to top, but allows you to scroll vertically and horizontally, and interact
+using a pointing device (mouse).  You can observe all  processes  running  on  the
+system,  along  with their command line arguments, as well as view them in a tree for‐
+mat, select multiple processes and acting on them all at once.
 ```bash
 htop
 ```
 
 ### 16. **df**
 Reports disk space usage.
+- displays the amount of disk
+space available on the file system containing each file name  argument.   If  no  file
+name  is  given,  the  space available on all currently mounted file systems is shown.
+Disk space is  shown  in  1K  blocks  by  default,  unless  the  environment  variable
+POSIXLY_CORRECT is set, in which case 512-byte blocks are used.
 ```bash
 # Display disk usage in human-readable format
 df -h
@@ -142,6 +187,7 @@ df -h
 
 ### 17. **du**
 Estimates file space usage.
+- Summarize disk usage of the set of FILEs, recursively for directories
 ```bash
 # Display the size of the current directory and subdirectories
 du -h
@@ -151,6 +197,8 @@ du -sh directory_name
 
 ### 18. **tar**
 Archives files.
+- is an archiving program designed to store multiple files in a single file  (anarchive),
+and  to manipulate such archives.  The archive can be either a regular file or a device (e.g. a tape drive, hence the name of the program, which stands  for  tapearchiver), which can be located either on the local or on a remote machine
 ```bash
 # Create a tar archive
 tar -cvf archive.tar file1 file2
@@ -164,6 +212,12 @@ tar -xzvf archive.tar.gz
 
 ### 19. **gzip**
 Compresses files.
+- reduces  the  size  of the named files using Lempel-Ziv coding (LZ77).  Whenever
+possible, each file is replaced by one with the extension .gz, while keeping the  same
+ownership  modes,  access and modification times.  (The default extension is z for MS‐
+DOS, OS/2 FAT, Windows NT FAT and Atari.)  If no files are specified,  or  if  a  file
+name  is "-", the standard input is compressed to the standard output.  Gzip will only
+attempt to compress regular files.  In particular, it will ignore symbolic links.
 ```bash
 # Compress a file
 gzip filename.txt
@@ -173,6 +227,12 @@ gunzip filename.txt.gz
 
 ### 20. **find**
 Searches for files in a directory hierarchy.
+- searches the directory
+tree rooted at each given starting-point by evaluating the given expression from  left
+to right, according to the rules of precedence (see section OPERATORS), until the out‐
+come is known (the left hand side is false for and operations, true for or), at  which
+point  find moves on to the next file name.  If no starting-point is specified, `.' is
+assumed
 ```bash
 # Find a file by name
 find /path/to/search -name filename.txt
@@ -182,6 +242,9 @@ find /path/to/search -mtime -7
 
 ### 21. **grep**
 Searches for patterns in files.
+- searches  for PATTERNS in each FILE.  PATTERNS is one or more patterns separated
+by newline characters, and grep prints each line that matches  a  pattern.   Typically
+PATTERNS should be quoted when grep is used in a shell command.
 ```bash
 # Search for a pattern in a file
 grep 'pattern' filename.txt
@@ -200,6 +263,12 @@ cat file1.txt file2.txt
 
 ### 23. **less**
 Views file content one page at a time.
+- is  a  program similar to more(1), but it has many more features.  Less does not
+have to read the entire input file before starting,  so  with  large  input  files  it
+starts up faster than text editors like vi(1).  Less uses termcap (or terminfo on some
+systems), so it can run on a variety of terminals.  There is even limited support  for
+hardcopy terminals.  (On a hardcopy terminal, lines which should be printed at the top
+of the screen are prefixed with a caret.)
 ```bash
 # View a file
 less filename.txt
@@ -210,6 +279,8 @@ less filename.txt
 
 ### 24. **tail**
 Displays the last part of a file.
+- Print  the  last  10  lines of each FILE to standard output.  With more than one FILE,
+precede each with a header giving the file name
 ```bash
 # Display the last 10 lines of a file
 tail filename.txt
